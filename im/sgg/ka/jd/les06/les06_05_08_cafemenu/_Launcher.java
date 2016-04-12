@@ -11,6 +11,8 @@ public class _Launcher {
 
         Menu menu = new Menu();
 
+        menu.setExtra(300);
+
         menu.setIngredient(initIngredients());
         menu.setRecipe(initRecipes(menu));
         menu.setProduct(initProducts(menu));
@@ -23,7 +25,7 @@ public class _Launcher {
         Product[] p = new Product[menu.getRecipe().length];
         for (int i=0; i<menu.getRecipe().length ; i++){
             if (menu.getRecipe()[i]!=null && menu.getRecipe()[i].getName()!= null) {
-                p[i] = new Product(menu.getRecipe()[i].getName(), menu.getRecipe()[i]);
+                p[i] = new Product(menu.getRecipe()[i].getName(), menu.getRecipe()[i], menu.getExtra());
             }
         }
         return p;
@@ -58,11 +60,11 @@ public class _Launcher {
         r[4] = new Recipe("Mocaccino", new Ingredient[]
                 {menu.getIngredient()[0], menu.getIngredient()[1],  menu.getIngredient()[2]
                         , menu.getIngredient()[3], menu.getIngredient()[7] });
-        r[4].setIngredientWeight(0,45);
-        r[4].setIngredientWeight(1,42);
+        r[4].setIngredientWeight(0,50);
+        r[4].setIngredientWeight(1,47);
         r[4].setIngredientWeight(2,5);
         r[4].setIngredientWeight(3,8);
-        r[4].setIngredientWeight(4,20);
+        r[4].setIngredientWeight(4,10);
 
         r[5] = new Recipe("Black tea", new Ingredient[]
                 {menu.getIngredient()[1],  menu.getIngredient()[3],  menu.getIngredient()[4] });
@@ -89,12 +91,12 @@ public class _Launcher {
 
         i[0] = new Ingredient("milk     ", 0.02);
         i[1] = new Ingredient("water    ", 0.01);
-        i[2] = new Ingredient("coffee   ", 0.50);
+        i[2] = new Ingredient("coffee   ", 0.40);
         i[3] = new Ingredient("sugar    ", 0.02);
         i[4] = new Ingredient("blacktea ", 0.40);
         i[5] = new Ingredient("greentea ", 0.40);
         i[6] = new Ingredient("earlgray ", 0.40);
-        i[7] = new Ingredient("chocolate", 0.25);
+        i[7] = new Ingredient("chocolate", 0.20);
 
         return i;
     }

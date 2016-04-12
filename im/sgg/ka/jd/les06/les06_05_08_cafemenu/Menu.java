@@ -5,7 +5,7 @@ public class Menu {
     private Ingredient[] ingredient;
     private Recipe[] recipe;
     private Product[] product;
-    public static final int MARK_UP = 150; // %
+    private int extra; // %
 
     public Menu() {
         this(null,null,null);
@@ -20,7 +20,7 @@ public class Menu {
     //////////////////////////////////////////////
 
     public void printMenu (){
-        System.out.println("CAFE MENU\n");
+        System.out.println("CAFE MENU");
         for (Product p: this.getProduct()  ) {
             if (p!=null) p.printProduct();
         }
@@ -50,5 +50,13 @@ public class Menu {
 
     public void setProduct(Product[] product) {
         this.product = product;
+    }
+
+    public int getExtra() {
+        return extra;
+    }
+
+    public void setExtra(int extra) {
+        this.extra = extra;
     }
 }

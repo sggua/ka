@@ -4,21 +4,23 @@ public class Product {
     private String name;
     private Recipe recipe;
     private double price;
+    private int extra;         // %
     private double sellPrice;
     private double income;
     private double markUp;
 
-    public Product() {
-        this(null);
-    }
+//    public Product() {
+//        this(null);
+//    }
+//
+//    public Product(String name) {
+//        this(name,null);
+//    }
 
-    public Product(String name) {
-        this(name,null);
-    }
-
-    public Product(String name, Recipe recipe) {
+    public Product(String name, Recipe recipe, int extra) {
         this.name = name;
         this.recipe = recipe;
+        this.extra= extra;
         this.price = this.calcPrice();
         this.sellPrice = this.calcSellPrice();
         this.income = this.calcIncome();
@@ -28,7 +30,7 @@ public class Product {
     //////////////////////////////////////////////////////
 
     public void printProduct(){
-        System.out.println("\n"+this.getName());
+        System.out.println("\n["+this.getName()+"]");
         System.out.println("================================================");
         System.out.println(this.getName() + "\t("+this.getWeight()+"g)"+ "\t\tPrice: "+this.getSellPrice()+" UAH");
         System.out.println("------------------------------------------------");
@@ -51,7 +53,7 @@ public class Product {
         return Math.round(p*100)/100.0;
     }
     public double calcSellPrice() {
-        return (int)(this.price*(1+Menu.MARK_UP/100)*100)/100-0.05;
+        return (int)(this.price*(1+this.extra/100)*100)/100-0.05;
     }
 
     public int getWeight() {
@@ -118,5 +120,12 @@ public class Product {
 
     public void setMarkUp(double markUp) {
         this.markUp = markUp;
+    }
+    public int getExtra() {
+        return extra;
+    }
+
+    public void setExtra(int extra) {
+        this.extra = extra;
     }
 }
