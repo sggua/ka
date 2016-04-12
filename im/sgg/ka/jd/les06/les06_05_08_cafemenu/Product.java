@@ -29,16 +29,16 @@ public class Product {
 
     public void printProduct(){
         System.out.println("\n"+this.getName());
-        System.out.println("========================================");
-        System.out.println(this.getName() + "\t("+this.getWeight()+"g)"+ "\tPrice: "+this.getSellPrice()+" UAH");
-        System.out.println("----------------------------------------");
+        System.out.println("================================================");
+        System.out.println(this.getName() + "\t("+this.getWeight()+"g)"+ "\t\tPrice: "+this.getSellPrice()+" UAH");
+        System.out.println("------------------------------------------------");
         for (Ingredient i:this.getRecipe().getIngredient()  ) {
-            System.out.println(i.getName()+"\t"+i.getWeight()+"g  \tx "+i.getPricePerGram()+" UAH\t"+i.getPrice());
+            System.out.println(i.getName()+"\t"+i.getWeight()+"g  \tx\t"+i.getPricePerGram()+" UAH \t"+i.getPrice());
         }
-        System.out.println("----------------------------------------");
-        System.out.println("Costs: "+this.getPrice()+"\tIncome: "+this.getIncome()
+        System.out.println("------------------------------------------------");
+        System.out.println("Costs: "+this.getPrice()+" \tIncome: "+this.getIncome()
                                             +"\tMarkUp: "+this.getMarkUp()+"%");
-        System.out.println("========================================");
+        System.out.println("================================================");
     }
 
 
@@ -48,7 +48,7 @@ public class Product {
         for ( Ingredient ing : this.getRecipe().getIngredient()  ) {
             p += ing.getWeight()*ing.getPricePerGram();
         }
-        return p;
+        return Math.round(p*100)/100.0;
     }
     public double calcSellPrice() {
         return (int)(this.price*(1+Menu.MARK_UP/100)*100)/100-0.05;
