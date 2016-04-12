@@ -21,8 +21,11 @@ public class Recipe {
 /////////////////////////////////////////////////////////////
 
    public void setIngredientWeight(int i, int weight) {
-       if (this.getIngredient()!=null && this.getIngredient()[i]!=null)
+       if (this.getIngredient()!=null && this.getIngredient()[i]!=null) {
            this.getIngredient()[i].setWeight(weight);
+           this.getIngredient()[i].countPrice();
+       }
+
    }
 
 /////////////////////////////////////////////////////////////

@@ -21,7 +21,9 @@ public class Menu {
 
     public void printMenu (){
         System.out.println("CAFE MENU\n");
-        for (Product p: this.getProduct()  ) p.printProduct();
+        for (Product p: this.getProduct()  ) {
+            if (p!=null) p.printProduct();
+        }
     }
 
     //////////////////////////////////////////////

@@ -5,6 +5,8 @@ public class Product {
     private Recipe recipe;
     private double price;
     private double sellPrice;
+    private double income;
+    private double markUp;
 
     public Product() {
         this(null);
@@ -19,21 +21,24 @@ public class Product {
         this.recipe = recipe;
         this.price = this.calcPrice();
         this.sellPrice = this.calcSellPrice();
+        this.income = this.calcIncome();
+        this.markUp = this.calcMarkUp(); // %  income/price * 100
     }
 
     //////////////////////////////////////////////////////
 
     public void printProduct(){
-        System.out.println(this.getName());
-        System.out.println("================================");
+        System.out.println("\n"+this.getName());
+        System.out.println("========================================");
         System.out.println(this.getName() + "\t("+this.getWeight()+"g)"+ "\tPrice: "+this.getSellPrice()+" UAH");
-        System.out.println("--------------------------------");
+        System.out.println("----------------------------------------");
         for (Ingredient i:this.getRecipe().getIngredient()  ) {
-            System.out.println(i.getName()+"\t"+i.getWeight()+"\t"+i.getPrice());
+            System.out.println(i.getName()+"\t"+i.getWeight()+"g  \tx "+i.getPricePerGram()+" UAH\t"+i.getPrice());
         }
-        System.out.println("--------------------------------");
-        System.out.println("Total costs:\t"+this.getPrice());
-        System.out.println("================================\n");
+        System.out.println("----------------------------------------");
+        System.out.println("Costs: "+this.getPrice()+"\tIncome: "+this.getIncome()
+                                            +"\tMarkUp: "+this.getMarkUp()+"%");
+        System.out.println("========================================");
     }
 
 
@@ -55,6 +60,14 @@ public class Product {
             w += ing.getWeight();
         }
         return w;
+    }
+
+    public double calcIncome() {
+        return (int)((this.getSellPrice()-this.getPrice())*100)/100.0;
+    }
+
+    public double calcMarkUp() {
+        return (int)(10000*this.getIncome()/this.getPrice())/100.0;
     }
 
     //////////////////////////////////////////////////////
@@ -89,5 +102,21 @@ public class Product {
 
     public void setSellPrice(double sellPrice) {
         this.sellPrice = sellPrice;
+    }
+
+    public double getIncome() {
+        return income;
+    }
+
+    public void setIncome(double income) {
+        this.income = income;
+    }
+
+    public double getMarkUp() {
+        return markUp;
+    }
+
+    public void setMarkUp(double markUp) {
+        this.markUp = markUp;
     }
 }

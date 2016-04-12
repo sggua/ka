@@ -18,24 +18,13 @@ public class Ingredient {
         this.name = name;
         this.pricePerGram = pricePerGram;
         this.weight = weight;
-        this.price = this.countPrice();
+        this.countPrice();
     }
 
 ///////////////////////////////////////////////////////
 
-    public void setIngredient(String name, double pricePerGram) {
-        setIngredient(name,pricePerGram,0);
-
-    }
-    public void setIngredient(String name, double pricePerGram, int weight) {
-        this.name = name;
-        this.pricePerGram = pricePerGram;
-        this.weight = weight;
-
-    }
-
-    public double countPrice(){
-        return this.getWeight()*this.getPricePerGram();
+    public void countPrice(){
+        this.price = this.getWeight()*this.getPricePerGram();
     }
 
 ///////////////////////////////////////////////////////
