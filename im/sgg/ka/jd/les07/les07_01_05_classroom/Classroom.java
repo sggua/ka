@@ -2,14 +2,9 @@ package im.sgg.ka.jd.les07.les07_01_05_classroom;
 
 import java.util.*;
 
-/**
- * Created by sergiy on 17.04.16.
- * Java Developer lessons
- * kademika.com
- */
+
 public class Classroom {
     List <Student> students;
-    private int inClass;
 
     public Classroom() {
         this(null);
@@ -17,9 +12,7 @@ public class Classroom {
 
     public Classroom(List<Student> students) {
         this.students = students;
-        this.inClass = 0;
         if (students==null) this.students = new ArrayList<>();
-        if (students!=null) this.inClass = students.size();
     }
 
     ///////////////////////////////////////////////////////////////////
@@ -27,22 +20,20 @@ public class Classroom {
     public void enter(Student s) {
         if (! isPresent(s)) {
             this.students.add(s);
-            this.inClass++;
         }
     }
 
     public void leave(Student s) {
         if ( isPresent(s)) {
             this.students.remove(s);
-            this.inClass--;
         } else {
-            System.out.println("There is no student "+s.getName()+" "+s.getSecondName()+" in the classroom.");
+            System.out.println("There is no student "+s.toString()+" in the classroom.");
         }
 
     }
 
     public int getStudentCount(){
-        return getInClass();
+        return this.students.size();
     }
 
     public boolean isPresent (Student s) {
@@ -57,9 +48,7 @@ public class Classroom {
     public void printStudentInfo(){
         if (! isClassOk() ) return;
         for (Student student : this.students ) {
-            if (student!=null) {
-                System.out.println(student.getName()+ " "+ student.getSecondName());
-            }
+            if (student!=null) System.out.println(student.toString());
         }
         System.out.println("Total students in the classroom: "+getStudentCount()+"\n");
     }
@@ -74,18 +63,11 @@ public class Classroom {
     ///////////////////////////////////////////////////////////////////
 
     public List<Student> getStudents() {
-        return students;
+        return new ArrayList<>(students);
     }
 
     public void setStudents(List<Student> students) {
         this.students = students;
     }
 
-    public int getInClass() {
-        return inClass;
-    }
-
-    public void setInClass(int inClass) {
-        this.inClass = inClass;
-    }
 }

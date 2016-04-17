@@ -1,10 +1,6 @@
 package im.sgg.ka.jd.les07.les07_01_05_classroom;
 
-/**
- * Created by sergiy on 17.04.16.
- * Java Developer lessons
- * kademika.com
- */
+
 public class Student {
     private String name;
     private String secondName;
@@ -17,6 +13,16 @@ public class Student {
         this.name = name;
         this.secondName = secondName;
     }
+
+    ///////////////////////////////////////////////////////
+
+    @Override
+    public String toString(){
+        return this.getName()+" "+this.getSecondName();
+    }
+
+    ///////////////////////////////////////////////////////
+
 
     public String getName() {
         return name;
