@@ -37,11 +37,7 @@ public class Classroom {
     }
 
     public boolean isPresent (Student s) {
-        if (s==null || ! isClassOk() ) return false;
-        for (Student student : this.students ) {
-            if (student!=null && student.equals(s)) return true;
-        }
-        return false;
+        return s == null || !isClassOk() ? false : this.students.contains(s);
     }
 
     // print all students
@@ -54,8 +50,7 @@ public class Classroom {
     }
 
     private boolean isClassOk (){
-        return this.students == null ? false : true;
-
+        return this.students != null;
     }
 
 
