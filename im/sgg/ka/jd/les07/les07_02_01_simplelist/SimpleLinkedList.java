@@ -17,7 +17,14 @@ public class SimpleLinkedList {
     }
 
     public void addFirst(Object o) {
+        if (o==null) return;
+        if (this.root==null) {
+            this.root = (Node) o;
+        } else {
+            this.root = new Node(o,root);
+        }
     }
+
     public void addLast(Object o) {
     }
     public void addAfter(Object o,Object after) {
