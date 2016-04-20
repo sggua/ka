@@ -18,7 +18,7 @@ public class SimpleLinkedList {
     }
     public void addLast(Object o) {
     }
-    public void addAfter(Object o1,Object o2) {
+    public void addAfter(Object o,Object after) {
     }
 
     public int getSize() {
