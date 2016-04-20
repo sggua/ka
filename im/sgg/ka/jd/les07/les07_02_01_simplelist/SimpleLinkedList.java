@@ -29,7 +29,19 @@ public class SimpleLinkedList {
         }
         size++;
     }
-    public void addAfter(Object o,Object after) {
+    public void addAfter(Object o,Object after) throws  IllegalStateException{
+        if (o==null) return;
+        if (root==null) {                        // empty list
+            addFirst(o);
+        } else if (size==1) {                    // 1 element in the list
+            root.ref = new Node(o);
+        } else if (getLast() == after) {         // last element
+            after = new Node (after, (Node) o);
+        } else {
+            Node a = getAfter(after);
+            Node n = new Node(o, a.ref);
+            a.ref = (Node) n.o;
+        }
     }
 
     public int getSize() {
@@ -38,12 +50,20 @@ public class SimpleLinkedList {
 
     private Node getLast(){
         Node last = root;
-        Node tmp = root;
-        while (tmp != null){
-            last = tmp.ref;
+        while (last.ref != null){
+            last = last.ref;
         }
         return last;
     }
+
+    private Node getAfter(Object after){
+        Node a = root;
+        while (a!=null && a != after){
+            a = a.ref;
+        }
+        return a;
+    }
+
 
 
     private class Node {
