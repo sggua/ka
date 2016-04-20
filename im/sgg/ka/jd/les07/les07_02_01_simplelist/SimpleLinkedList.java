@@ -19,6 +19,7 @@ public class SimpleLinkedList {
     public void addFirst(Object o) {
         if (o==null) return;
         this.root = new Node(o,root);
+        size++;
 
     }
 
