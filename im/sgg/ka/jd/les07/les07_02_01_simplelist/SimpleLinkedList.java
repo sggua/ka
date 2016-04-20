@@ -5,6 +5,20 @@ public class SimpleLinkedList {
     private int size;
 
 
+    private class Node {
+        private Object o;
+        private Node node;
+
+        public Node() {
+            this(null,null);
+        }
+
+        public Node(Object o, Node node) {
+            this.o = o;
+            this.node = node;
+        }
+    }
+
     public SimpleLinkedList() {
         this(null,0);
     }
