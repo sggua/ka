@@ -37,9 +37,10 @@ public class SimpleLinkedList {
     }
 
     private Node getLast(){
-        Node last = root.ref;
-        for (int i=0; i<size;i++){
-            last = last.ref;
+        Node last = root;
+        Node tmp = root;
+        while (tmp != null){
+            last = tmp.ref;
         }
         return last;
     }
