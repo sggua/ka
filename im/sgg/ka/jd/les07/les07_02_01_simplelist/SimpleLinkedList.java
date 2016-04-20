@@ -4,9 +4,6 @@ public class SimpleLinkedList {
     private Node root;
     private int size;
 
-
-
-
     public SimpleLinkedList() {
         this(null,0);
     }
@@ -24,6 +21,13 @@ public class SimpleLinkedList {
     }
 
     public void addLast(Object o) {
+        if (o==null) return;
+        if (root==null) {
+            this.root = new Node(o);
+        } else {
+            this.getLast().ref = new Node(o);
+        }
+        size++;
     }
     public void addAfter(Object o,Object after) {
     }
@@ -32,13 +36,25 @@ public class SimpleLinkedList {
         return size;
     }
 
+    private Node getLast(){
+        Node last = root.ref;
+        for (int i=0; i<size;i++){
+            last = last.ref;
+        }
+        return last;
+    }
+
 
     private class Node {
         private Object o;
         private Node ref;
 
         public Node() {
-            this(null,null);
+            this(null);
+        }
+
+        public Node (Object o){
+            this(o,null);
         }
 
         public Node(Object o, Node ref) {
