@@ -18,11 +18,8 @@ public class SimpleLinkedList {
 
     public void addFirst(Object o) {
         if (o==null) return;
-        if (this.root==null) {
-            this.root = (Node) o;
-        } else {
-            this.root = new Node(o,root);
-        }
+        this.root = new Node(o,root);
+
     }
 
     public void addLast(Object o) {
@@ -37,15 +34,15 @@ public class SimpleLinkedList {
 
     private class Node {
         private Object o;
-        private Node node;
+        private Node ref;
 
         public Node() {
             this(null,null);
         }
 
-        public Node(Object o, Node node) {
+        public Node(Object o, Node ref) {
             this.o = o;
-            this.node = node;
+            this.ref = ref;
         }
     }
 }
