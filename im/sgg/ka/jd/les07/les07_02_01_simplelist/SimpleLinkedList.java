@@ -30,18 +30,25 @@ public class SimpleLinkedList {
         size++;
     }
     public void addAfter(Object o,Object after) throws  IllegalStateException{
-        if (o==null) return;
+        if (o==null || after==null) return;
         if (root==null) {                        // empty list
             addFirst(o);
+            return;
         } else if (size==1) {                    // 1 element in the list
             root.ref = new Node(o);
         } else if (getLast() == after) {         // last element
             after = new Node (after, (Node) o);
         } else {
-            Node a = getAfter(after);
-            Node n = new Node(o, a.ref);
-            a.ref = (Node) n.o;
+            Node a = getPos( after);
+            if (a.o==after) {
+                Node n = new Node(o, a.ref);
+                a.ref = n;
+            } else {
+                throw new IllegalStateException("Object "+after+" not found.");
+            }
+
         }
+        size++;
     }
 
     public int getSize() {
@@ -56,15 +63,26 @@ public class SimpleLinkedList {
         return last;
     }
 
-    private Node getAfter(Object after){
+    private Node getPos(Object after){
         Node a = root;
-        while (a!=null && a != after){
+        while (a!=null && a.ref!=null && a.o != after){
             a = a.ref;
+            if (a.o == after) break;
         }
         return a;
     }
 
 
+    public void printList(){
+        Node last = root;
+        String out = "{ ";
+        for (int i=0 ; i<size ; i++) {
+            out+= last.o.toString() + ", ";
+            last = last.ref;
+        }
+        out = "" + size + " " + out.substring(0,out.length()-2) + " }";
+        System.out.println(out);
+    }
 
     private class Node {
         private Object o;
