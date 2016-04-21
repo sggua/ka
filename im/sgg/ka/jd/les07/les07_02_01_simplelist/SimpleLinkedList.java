@@ -112,18 +112,22 @@ public class SimpleLinkedList implements Iterable<Object> {
 
 
         public boolean hasNext(){
-            if ((node != null && node.ref != null) ){
-                return true;
-            } else {
-                return false;
-            }
+            return (node == null && root!=null) || (node != null && node.ref != null);
         }
         public Object next(){
-            if (this.hasNext()) {
-                return this.node.o;
+            if (node == null && root!=null){
+                node=root;
+                return node.o;
             }
-            return this;
+
+            if (this.hasNext()) {
+                node = node.ref;
+                return node.o;
+            }
+//            return this;
+            throw new IllegalStateException("There're no more elements in this list");
         }
+
         public void remove(){
         }
 

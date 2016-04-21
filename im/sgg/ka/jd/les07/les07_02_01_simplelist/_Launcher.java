@@ -1,10 +1,6 @@
 package im.sgg.ka.jd.les07.les07_02_01_simplelist;
 
-import org.omg.CORBA.Object;
-
 import java.util.Iterator;
-
-import static com.sun.org.apache.xml.internal.security.keys.keyresolver.KeyResolver.iterator;
 
 /**
  * Created by sergiy on 20.04.16.
@@ -49,9 +45,17 @@ public class _Launcher {
 
         list.printList();
 
-        for (Iterator<java.lang.Object> i = list.iterator(); i.hasNext() ; ){
-            System.out.println(i.toString());
-            i = (Iterator<java.lang.Object>) i.next();
+        System.err.println("for 1");
+        for (Object o: list) {
+            String s = (String) o;
+            System.out.println(s);
+        }
+
+        System.err.println("for 2");
+
+        for (Iterator<Object> i = list.iterator(); i.hasNext() ; ){
+            Object o = i.next();
+            System.out.println(o);
         }
 
 
