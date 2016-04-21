@@ -6,7 +6,6 @@ import java.util.function.Consumer;
 
 public class SimpleLinkedList implements Iterable<Object> {
     private Node root;
-    private Node prev;
     private int size;
 
     public SimpleLinkedList() {
@@ -56,21 +55,6 @@ public class SimpleLinkedList implements Iterable<Object> {
         size++;
     }
 
-    public void remove(Object obj){
-        prev = getPrev(obj);
-        if (prev!=null && prev.ref!=null && prev.ref.o==obj) {
-            Node n = prev.ref;
-            Node ref = n.ref;
-            prev.ref.ref = null;
-            prev.ref.o = null;
-            prev.ref = ref;
-            size--;
-        } else {
-            throw new IllegalStateException("Object "+obj+" not found.");
-        }
-
-    }
-
     public int getSize() {
         return size;
     }
@@ -110,7 +94,12 @@ public class SimpleLinkedList implements Iterable<Object> {
             out+= last.o.toString() + ", ";
             last = last.ref;
         }
-        out = "" + size + " " + out.substring(0,out.length()-2) + " }";
+        if (size==0) {
+            out = "" + size + " { }";
+        } else {
+            out = "" + size + " " + out.substring(0, out.length() - 2) + " }";
+        }
+
         System.out.println(out);
     }
 
@@ -132,6 +121,7 @@ public class SimpleLinkedList implements Iterable<Object> {
     private class SLLIterator implements Iterator<Object> {
 
         private Node node;
+        private Node prev;
 
         public SLLIterator() {
         }
@@ -147,12 +137,33 @@ public class SimpleLinkedList implements Iterable<Object> {
             }
 
             if (this.hasNext()) {
+                prev = node;
                 node = node.ref;
                 return node.o;
             }
 //            return this;
             throw new IllegalStateException("There're no more elements in this list");
         }
+
+        public void remove(){
+            prev = getPrev(node);
+            if (size==1 && !hasNext()) {
+                node =null;
+                root = null;
+            } else if (prev!=null && prev.ref!=null && prev.ref.o==node) {
+                Node n = prev.ref;
+                Node ref = n.ref;
+                prev.ref.ref = null;
+                prev.ref.o = null;
+                prev.ref = ref;
+//            } else {
+//                throw new IllegalStateException("Object "+node+" not found.");
+            }
+
+            size--;
+
+        }
+
 
         @Override
         public void forEachRemaining(Consumer<? super Object> action) {

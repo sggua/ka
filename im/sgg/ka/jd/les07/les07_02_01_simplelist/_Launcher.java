@@ -45,23 +45,20 @@ public class _Launcher {
 
         list.printList();
 
-//        System.err.println("for 1");
-//        for (Object o: list) {
-//            String s = (String) o;
-//            System.out.println(s);
-//        }
-//
-//        System.err.println("for 2");
-//
-//        for (Iterator<Object> i = list.iterator(); i.hasNext() ; ){
-//            Object o = i.next();
-//            System.out.println(o);
-//        }
+        for (Object o: list) {
+            String s = (String) o;
+            System.out.println(s);
+        }
+
 
         list.printList();
-        list.remove(str10);
-        list.printList();
-        list.remove("str22");
+
+
+        for (Iterator<Object> i = list.iterator(); i.hasNext() ; ){
+            i.next();
+            i.remove();
+        }
+
         list.printList();
 
 
