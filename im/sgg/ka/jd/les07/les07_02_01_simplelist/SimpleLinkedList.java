@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 
 public class SimpleLinkedList implements Iterable<Object> {
     private Node root;
+    private Node prev;
     private int size;
 
     public SimpleLinkedList() {
@@ -55,6 +56,21 @@ public class SimpleLinkedList implements Iterable<Object> {
         size++;
     }
 
+    public void remove(Object obj){
+        prev = getPrev(obj);
+        if (prev!=null && prev.ref!=null && prev.ref.o==obj) {
+            Node n = prev.ref;
+            Node ref = n.ref;
+            prev.ref.ref = null;
+            prev.ref.o = null;
+            prev.ref = ref;
+            size--;
+        } else {
+            throw new IllegalStateException("Object "+obj+" not found.");
+        }
+
+    }
+
     public int getSize() {
         return size;
     }
@@ -67,11 +83,21 @@ public class SimpleLinkedList implements Iterable<Object> {
         return last;
     }
 
-    private Node getPos(Object after){
+    private Node getPos(Object o){
         Node a = root;
-        while (a!=null && a.ref!=null && a.o != after){
+        while (a!=null && a.ref!=null && a.o != o){
             a = a.ref;
-            if (a.o == after) break;
+            if (a.o == o) break;
+        }
+        return a;
+    }
+
+    private Node getPrev(Object o){
+        Node a = root;
+        while (a!=null && a.ref!=null && a.ref.o != o){
+            if (a.ref.o == o) break;
+            a = a.ref;
+
         }
         return a;
     }
@@ -126,9 +152,6 @@ public class SimpleLinkedList implements Iterable<Object> {
             }
 //            return this;
             throw new IllegalStateException("There're no more elements in this list");
-        }
-
-        public void remove(){
         }
 
         @Override
