@@ -1,5 +1,11 @@
 package im.sgg.ka.jd.les07.les07_02_01_simplelist;
 
+import org.omg.CORBA.Object;
+
+import java.util.Iterator;
+
+import static com.sun.org.apache.xml.internal.security.keys.keyresolver.KeyResolver.iterator;
+
 /**
  * Created by sergiy on 20.04.16.
  * Java Developer lessons
@@ -10,9 +16,9 @@ public class _Launcher {
 
         SimpleLinkedList list = new SimpleLinkedList();
 
-        String first = new String("first");
-        String str10 = new String("str10");
-        String last = new String("last");
+        String first = "first";
+        String str10 = "str10";
+        String last = "last";
 
         list.addAfter("str01",first);
         list.addFirst("str1");
@@ -42,6 +48,12 @@ public class _Launcher {
         list.addAfter("str22",str10);
 
         list.printList();
+
+        for (Iterator<java.lang.Object> i = list.iterator(); i.hasNext() ; ){
+            System.out.println(i.toString());
+            i = (Iterator<java.lang.Object>) i.next();
+        }
+
 
 
     }

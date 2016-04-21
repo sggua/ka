@@ -1,6 +1,10 @@
 package im.sgg.ka.jd.les07.les07_02_01_simplelist;
 
-public class SimpleLinkedList {
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
+public class SimpleLinkedList implements Iterable<Object> {
     private Node root;
     private int size;
 
@@ -82,6 +86,51 @@ public class SimpleLinkedList {
         }
         out = "" + size + " " + out.substring(0,out.length()-2) + " }";
         System.out.println(out);
+    }
+
+    @Override
+    public Iterator<Object> iterator() {
+        return new SLLIterator();
+    }
+
+    @Override
+    public void forEach(Consumer<? super Object> action) {
+
+    }
+
+    @Override
+    public Spliterator<Object> spliterator() {
+        return null;
+    }
+
+    private class SLLIterator implements Iterator<Object> {
+
+        private Node node;
+
+        public SLLIterator() {
+        }
+
+
+        public boolean hasNext(){
+            if ((node != null && node.ref != null) ){
+                return true;
+            } else {
+                return false;
+            }
+        }
+        public Object next(){
+            if (this.hasNext()) {
+                return this.node.o;
+            }
+            return this;
+        }
+        public void remove(){
+        }
+
+        @Override
+        public void forEachRemaining(Consumer<? super Object> action) {
+
+        }
     }
 
     private class Node {
